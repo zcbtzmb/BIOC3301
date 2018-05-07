@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH -t 1:00:00
+#SBATCH -n 24
+#SBATCH -p normal
+
+# Load modules
+module load eb
+module load Miniconda2
+module load R
+
+# loading virtualenv
+source activate qiime1
+
+# setting temporary directory
+export TMPDIR=~/qiime_tmp
+
+# Adonis statistical test for beta diversity
+compare_categories.py \
+--method adonis \
+-i /home/cbmucl12/cdout_proteobacteria/weighted_unifrac_dm.txt \
+-m /home/cbmucl12/map_merged_altered.txt \
+-c Year \
+-o /home/cbmucl12/adonis_weighted_proteobacteria \
+-n 99
+
+source deactivate
