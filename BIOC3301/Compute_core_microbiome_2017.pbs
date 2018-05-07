@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH -t 3:00:00
+#SBATCH -n 24
+#SBATCH -p normal
+
+# Load modules
+module load eb
+module load Miniconda2
+module load R
+
+# loading virtualenv
+source activate qiime1
+
+# setting temporary directory
+export TMPDIR=~/qiime_tmp
+
+# Compute core microbiome 2017
+compute_core_microbiome.py \
+-i /home/cbmucl12/2017_03_smb/otus_closed_SILVA_2017/otu_table.biom \
+-o /home/cbmucl12/2017_03_smb/otu_table_core_2017.biom
+
+source deactivate
