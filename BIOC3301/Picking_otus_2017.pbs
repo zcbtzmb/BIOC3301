@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH -t 3:00:00
+#SBATCH -n 24
+#SBATCH -p normal
+
+# Load modules
+module load eb
+module load Miniconda2
+
+# loading virtualenv
+source activate qiime1
+
+# setting temporary directory
+export TMPDIR=~/qiime_tmp
+
+# Picking OTUs 2017
+pick_closed_reference_otus.py \
+-i /home/cbmucl12/2017_03_smb/slout_2017/seqs.fna \
+-o /home/cbmucl12/2017_03_smb/otus_closed_SILVA_2017 \
+-r /home/cbmucl12/SILVA_128_QIIME_release/rep_set/rep_set_16S_only/97/97_otus_16S.fasta \
+-t /home/cbmucl12/SILVA_128_QIIME_release/taxonomy/16S_only/97/majority_taxonomy_all_levels.txt \
+-a -O 24
+
+source deactivate
