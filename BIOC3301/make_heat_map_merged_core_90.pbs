@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH -t 1:00:00
+#SBATCH -n 24
+#SBATCH -p short
+
+# Load modules
+module load eb
+module load Miniconda2
+
+# loading virtualenv
+source activate qiime1
+
+# setting temporary directory
+export TMPDIR=~/qiime_tmp
+
+# Make heatmap of core microbiome 
+make_otu_heatmap.py \
+-i /home/cbmucl12/summarized_taxa_merged_core_90/merged_otu_table_90_L2.biom \
+-m /home/cbmucl12/map_merged_altered.txt \
+-c Year \
+-o /home/cbmucl12/heatmap_merged_core_90.pdf
+
+source deactivate
