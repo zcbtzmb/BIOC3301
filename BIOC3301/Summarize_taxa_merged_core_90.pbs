@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH -t 3:00:00
+#SBATCH -n 24
+#SBATCH -p normal
+
+# Load modules
+module load eb
+module load Miniconda2
+
+# loading virtualenv
+source activate qiime1
+
+# setting temporary directory
+export TMPDIR=~/qiime_tmp
+
+# Summarising taxonomy of the merged core microbiome
+summarize_taxa.py \
+-i /home/cbmucl12/merged_otu_table_90.biom \
+-L 2 \
+-o /home/cbmucl12/summarized_taxa_merged_core_90.biom
+
+source deactivate
