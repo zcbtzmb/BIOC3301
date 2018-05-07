@@ -15,7 +15,7 @@ export TMPDIR=~/qiime_tmp
 
 # Demultiplexing samples
 split_libraries_fastq.py \
--m /home/cbmucl12/map_merged_altered.txt \
+-m /home/cbmucl12/map_complete.tsv \
 -i /home/cbmucl12/SeqPrep_joined/seqprep_assembled.fastq.gz \
 -b /home/cbmucl12/SeqPrep_joined/seqprep_assembled.fastq_barcodes.fastq \
 -o /home/cbmucl12/slout \
