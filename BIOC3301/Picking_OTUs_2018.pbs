@@ -13,6 +13,7 @@ source activate qiime1
 # setting temporary directory
 export TMPDIR=~/qiime_tmp
 
+# Picking OTUs 2018
 pick_closed_reference_otus.py \
 -i /home/cbmucl12/2018_03_smb/SeqPrep_Joined/slout/seqs.fna \
 -o /home/cbmucl12/otus_closed_SILVA \
