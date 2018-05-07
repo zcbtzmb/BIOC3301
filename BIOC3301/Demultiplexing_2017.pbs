@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH -t 1:00:00
+#SBATCH -n 24
+#SBATCH -p normal
+
+# Load modules
+module load eb
+module load Miniconda2
+
+# loading virtualenv
+source activate qiime1
+
+# setting temporary directory
+export TMPDIR=~/qiime_tmp
+
+# Demultiplexing 2017 dataset
+split_libraries_fastq.py \
+-m /home/cbmucl12/2017_03_smb/map.tsv \
+-i /home/cbmucl12/2017_03_smb/Read1.fastq.gz \
+-b /home/cbmucl12/2017_03_smb/Index.fastq.gz \
+-o /home/cbmucl12/2017_03_smb/slout_2016_2017 \
+-q 19 \
+
+--rev_comp_barcode \
+--rev_comp_mapping_barcodes \
+--barcode_type 12
+
+source deactivate
