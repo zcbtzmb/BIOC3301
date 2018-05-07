@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH -t 3:00:00
+#SBATCH -n 24
+#SBATCH -p normal
+
+# Load modules
+module load eb
+module load Miniconda2
+
+
+# loading virtualenv
+source activate qiime1
+
+# Splitting merged core OTU table into phyla
+split_otu_table_by_taxonomy.py \
+-i /home/cbmucl12/merged_otu_table_90.biom \
+-L 2 \
+-o /home/cbmucl12/split_merged_otu_table_90_L2
+
+source deactivate
